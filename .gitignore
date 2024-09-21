@@ -1,18 +1,3 @@
-# Python related
-.venv/
-__pycache__/
-.env
-
-# Test files
-*.raw
-*.mem
-*.e01
-
-# Output related
-*.pdf
-*.docx
-temp/
-
 # Web related
 node_modules/
 coverage/
