@@ -1,12 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faArrowCircleDown } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube, faGithub } from "@fortawesome/free-brands-svg-icons";
+import {
+  faArrowCircleDown,
+  faBars,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons"; // Import hamburger and close icons
 import "../styles/Navbar.css";
 import logo from "../assets/logo/logo.png";
 
 function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="navbar">
       <div className="navbar-container">
@@ -18,14 +27,14 @@ function Navbar() {
         </div>
 
         {/* Navbar links */}
-        <div className="navbar-links">
-          <a href="/about" className="navbar-link">
+        <div className={`navbar-links ${isMenuOpen ? "active" : ""}`}>
+          <a href="/about" className="navbar-link" onClick={toggleMenu}>
             About
           </a>
-          <a href="/team" className="navbar-link">
+          <a href="/team" className="navbar-link" onClick={toggleMenu}>
             Team
           </a>
-          <a href="/contact" className="navbar-link">
+          <a href="/contact" className="navbar-link" onClick={toggleMenu}>
             Contact
           </a>
         </div>
@@ -47,6 +56,10 @@ function Navbar() {
           >
             <FontAwesomeIcon icon={faGithub} />
           </a>
+        </div>
+        {/* Hamburger icon */}
+        <div className="hamburger" onClick={toggleMenu}>
+          <FontAwesomeIcon icon={isMenuOpen ? faTimes : faBars} />
         </div>
       </div>
     </div>
